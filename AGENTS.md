@@ -79,6 +79,13 @@ Everything runs via Docker (`docker-compose.dev.yml`):
 - The evals themselves (the rules, how to create one, where to look) are in `evals/README.md`.
 - Templates live in `.github/ISSUE_TEMPLATE/`. Blank issues are disabled on the web form, but `gh issue create` bypasses templates, which is why the skills exist.
 
+## Local feature planning
+
+- Use `.planning/features/<feature-slug>/` for fast, local-only feature specifications, designs, task lists, research and disposable working notes. `.planning/` is gitignored and is not a durable team record.
+- A useful default layout is `README.md`, `requirements.md`, `design.md`, `tasks.md`, `decisions.md` and `scratch/`; create only the files the feature needs.
+- Promote anything that requires team review, coordination or lasting traceability to the GitHub issue or its design comment. Promote lasting product or operational documentation to `docs/` or the relevant component `README.md`, and encode final behavior in tests or evals.
+- Do not use `docs-internal/` for feature planning; it is reserved for generated OpenAPI and Postman artifacts.
+
 ## PRs and comments
 
 - A PR description fits in 20 lines: what changed, why, how it was verified, with links. An issue comment fits in 25 lines. Design comments carry a Mermaid diagram when the change crosses stages or services.
