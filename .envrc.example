@@ -1,0 +1,3 @@
+# Optional automatic activation with direnv + nix-direnv.
+# Preserve any existing .envrc settings when adding this line.
+use flake

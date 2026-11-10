@@ -246,6 +246,19 @@ kodus-ai/
 
 For full setup instructions, follow the [Local Quickstart](https://docs.kodus.io/how_to_deploy/en/local_quickstart/orchestrator?utm_source=github&utm_medium=readme).
 
+### Optional Nix development shell
+
+With Nix flakes enabled, run `nix develop` from the repository root. The shell provides Node.js **22.23.4** and Corepack; `pnpm` uses the version pinned in `package.json` (**11.9.0**). Its first invocation downloads that version, so registry access is required.
+
+```sh
+nix develop
+pnpm install --frozen-lockfile
+```
+
+When adding the flake to an existing checkout, Git must know about `flake.nix` and `flake.lock` before `nix develop` can see them (`git add -N flake.nix flake.lock` is sufficient). Shell activation does not install dependencies, load application secrets, or start Docker services; use the existing setup and Docker commands afterward. Docker daemon access is still required for those commands.
+
+For automatic activation with direnv and nix-direnv, add `use flake` to your existing `.envrc` (or copy `.envrc.example` if none exists), then run `direnv allow`. When changing `.nvmrc`, update the Nixpkgs revision in `flake.nix` and regenerate `flake.lock` with `nix flake lock`; the shell asserts that the Node versions match.
+
 ## Open Source vs. Teams vs. Enterprise
 
 | Feature | <img src="https://kodus.io/wp-content/uploads/2026/06/kody-community2-scaled.webp" alt="Kody Community" width="110" /><br>Community | <img src="https://kodus.io/wp-content/uploads/2026/06/kody-team-scaled.webp" alt="Kody Teams" width="110" /><br>Teams | <img src="https://kodus.io/wp-content/uploads/2026/06/kody-enterprise-scaled.webp" alt="Kody Enterprise" width="110" /><br>Enterprise |
